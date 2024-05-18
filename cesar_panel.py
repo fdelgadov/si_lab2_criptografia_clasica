@@ -11,18 +11,24 @@ class cesar_panel(tk.Frame):
     def btn_cifrado_cesar(self):
         txt = self.txt_original.get("1.0", "end-1c")
         txt = solo_A_Z(txt)
-        txt = cifrado_cesar(txt, 3)
+        desplazar = int(self.spn_desplazar.get())
+        txt = cifrado_cesar(txt, desplazar)
         self.txt_cifrado.delete("1.0", "end")
         self.txt_cifrado.insert("1.0", txt)
 
     def btn_descifrado_cesar(self):
         txt = self.txt_cifrado.get("1.0", "end-1c")
-        txt = descifrado_cesar(txt, 3)
+        desplazar = int(self.spn_desplazar.get())
+        txt = descifrado_cesar(txt, desplazar)
         self.txt_original.delete("1.0", "end")
         self.txt_original.insert("1.0", txt)
 
     def contruir_panel(self):
         lbl_titulo = tk.Label(self, text="Cifrado Cesar")
+        lbl_desplazar = tk.Label(self, text="Desplazamiento")
+        lbl_desplazar.pack(anchor="w")
+        self.spn_desplazar = tk.Spinbox(self, from_=1, to=26)
+        self.spn_desplazar.pack(anchor="w")
         lbl_original = tk.Label(self, text="Texto original", anchor='w')
         lbl_aux = tk.Label(self)
         lbl_cifrado = tk.Label(self, text="Texto cifrado", anchor='w')
