@@ -24,6 +24,8 @@ tildes_vocales = {
 
 signos = [' ', ',', '.', ';', '\n']
 
+ascii_191 = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~‘’¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ"
+
 def sustituciones(txt):
     aux = txt
     for k, v in caracter_sustituto.items():
@@ -134,5 +136,14 @@ def solo_A_Z(texto):
     aux = eliminar_tildes(aux)
     aux = a_mayuscula(aux)
     aux = eliminar_signos(aux)
+
+    return aux
+
+def solo_ascii_191(texto):
+    aux = ""
+
+    for c in texto:
+        if c in ascii_191:
+            aux += c
 
     return aux

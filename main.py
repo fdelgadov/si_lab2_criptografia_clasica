@@ -22,7 +22,7 @@ def on_cmb_select(event):
 
 raiz = tk.Tk()
 raiz.title("Algoritmos de cifrado")
-raiz.geometry("640x360")
+raiz.geometry("640x430")
 
 funciones = ["Cesar", "Vignere", "Autoclave"]
 cmb_funcionalidad = ttk.Combobox(raiz, values=funciones)
