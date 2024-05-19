@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from cesar_panel import cesar_panel
+from vignere_panel import vignere_panel
 
 def mostrar_panel(panel):
     global panel_actual
@@ -27,7 +28,7 @@ cmb_funcionalidad.bind("<<ComboboxSelected>>", on_cmb_select)
 cmb_funcionalidad.pack()
 
 panel1 = cesar_panel(raiz)
-panel2 = cesar_panel(raiz)
+panel2 = vignere_panel(raiz)
 
 panel_actual = panel1
 panel1.pack()
