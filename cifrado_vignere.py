@@ -1,11 +1,11 @@
-A_Z = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+from cifrado_cesar import get_indice, A_Z
 
 def cifrado_vignere_27(texto, clave):
     aux = ""
 
     for i in range(len(texto)):
-        it = get_indice(texto[i])
-        ik = get_indice(clave[i % len(clave)])
+        it = get_indice(texto[i], A_Z)
+        ik = get_indice(clave[i % len(clave)], A_Z)
         aux += A_Z[(it + ik) % 27]
 
     return aux
@@ -14,13 +14,8 @@ def descifrado_vignere_27(texto, clave):
     aux = ""
     
     for i in range(len(texto)):
-        it = get_indice(texto[i])
-        ik = get_indice(clave[i % len(clave)])
+        it = get_indice(texto[i], A_Z)
+        ik = get_indice(clave[i % len(clave)], A_Z)
         aux += A_Z[(it - ik) % 27]
 
     return aux
-
-def get_indice(c):
-    for i in range(len(A_Z)):
-        if A_Z[i] == c:
-            return i
