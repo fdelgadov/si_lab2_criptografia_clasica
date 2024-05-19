@@ -1,3 +1,6 @@
+import math
+from functools import reduce
+
 caracter_sustituto = {
     'a': 'u',
     'h': 't',
@@ -25,6 +28,7 @@ tildes_vocales = {
 signos = [' ', ',', '.', ';', '\n']
 
 ascii_191 = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~‘’¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ"
+A_Z = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
 
 def sustituciones(txt):
     aux = txt
@@ -54,7 +58,7 @@ def a_mayuscula(txt):
     return aux
 
 def eliminar_signos(txt):
-    validos = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+    validos = A_Z
     aux = ""
 
     for c in txt:
@@ -84,10 +88,10 @@ def frecuencias(archivo):
 
     return diccionaro_frecuencias
 
-def secuencias_repetidas(texto):
+def secuencias_repetidas(texto, tamaño):
     secuencias = {}
-    for i in range(len(texto) - 3 + 1):
-        secuencia = texto[i:i + 3]
+    for i in range(len(texto) - tamaño):
+        secuencia = texto[i:i + tamaño]
         try:
             secuencias[secuencia].append(i)
         except:
@@ -102,6 +106,23 @@ def calcular_distancias(secuencias):
             distancias.append(posiciones[i + 1] - posiciones[i])
     return distancias
 
+def mcd_lista(numbers):
+    return reduce(math.gcd, numbers)
+
+def caracter_frecuente(texto):
+    frecuente = -1
+    frecuencia = -1
+    for c in A_Z:
+        aux = 0
+        for cc in texto:
+            if c == cc:
+                aux += 1
+        if frecuencia < aux:
+            frecuencia = aux
+            frecuente = c
+
+    return [frecuente, frecuencia]
+        
 def a_unicode(texto):
     aux = ""
     for c in texto:
